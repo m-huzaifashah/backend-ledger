@@ -15,10 +15,10 @@ const ledgerSchema=new mongoose.Schema({
         min:[0,'ammount can not be negative'],
         immutable:true
     },
-    transcation:{
+    transaction:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'transcation',
-        required:[true,'Ledger must be assocaited with a transcation'],
+        ref:'transaction',
+        required:[true,'Ledger must be assocaited with a transaction'],
         index:true,
         immutable:true
     },

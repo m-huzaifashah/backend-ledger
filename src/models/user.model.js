@@ -23,6 +23,12 @@ const userSchema = new mongoose.Schema({
     minlength: [6, "password length should be more than 6 "],
     select: false,
   },
+  systemUser:{
+    type:Boolean,
+    default:false,
+    immutable:true,
+    select:false
+  }
 },{
     timestamps:true
 });
@@ -40,7 +46,7 @@ return
 } )
 
 userSchema.methods.comparePassword=async function(password){
-  console.log(password,this.password)
+  
 return bcrypt.compare(password,this.password)
 }
 

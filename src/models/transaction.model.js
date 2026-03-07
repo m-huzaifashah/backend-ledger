@@ -1,17 +1,17 @@
 const mongoose=require('mongoose')
 
 
-const transcationSchema=new mongoose.Schema({
+const transactionSchema=new mongoose.Schema({
     fromAccount:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'account',
-        required:[true,'Transcation must be associatd with a from account'],
+        required:[true,'transaction must be associatd with a from account'],
         index:true
     },
     toAccount:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'account',
-        required:[true,'Transcation must be associatd with a to account'],
+        required:[true,'transaction must be associatd with a to account'],
         index:true
     },
     status:{
@@ -24,12 +24,12 @@ const transcationSchema=new mongoose.Schema({
     },
     amount:{
         type:Number,
-        required:[true,'Amont is required to perform a Transcation'],
+        required:[true,'Amont is required to perform a transaction'],
         min:[0,'Amount can not be negative']
     },
     idempotencyKey:{
         type:String,
-        required:[true,'idempotency is required for transcation'],
+        required:[true,'idempotency is required for transaction'],
         index:true,
         unique:true
     }
@@ -37,6 +37,6 @@ const transcationSchema=new mongoose.Schema({
     timestamps:true
 })
 
-const transcationModel=mongoose.model('transcation',transcationSchema)
+const transactionModel=mongoose.model('transaction',transactionSchema)
 
-module.exports=transcationModel
+module.exports=transactionModel

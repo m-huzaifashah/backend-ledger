@@ -45,22 +45,22 @@ const html=`<p>Hello ${name}</p><p>Thank you for registering at backend ledger</
 await sendEmail(userEmail,subject,text,html)
 }
 
-const sendTranscationEmail=async(userEmail,name,amount,toAccount)=>{
-  const subject='Transcation!'
+const sendTransactionEmail=async(userEmail,name,amount,toAccount)=>{
+  const subject='transaction!'
 const text=`Hey ${name} \n\nthis amount ${amount},has been transfered to ${toAccount}`
-const html=`<p>Hello ${name}</p><p>Thank you for doing a transcation at backend ledger</p>`
+const html=`<p>Hello ${name}</p><p>Thank you for doing a transaction at backend ledger</p>`
 
 await sendEmail(userEmail,subject,text,html)
 }
 
-const sendTranscationFaliureEmail=async(userEmail,name,amount,toAccount)=>{
-  const subject='Transcation Failed !!!'
-const text=`Hey ${name} \n\n a transcation of this amount ${amount},to this account ${toAccount} has been failed`
-const html=`<p>Hello ${name}</p><p>Thank you for doing a transcation at backend ledger</p>`
+const sendTransactionFaliureEmail=async(userEmail,name,amount,toAccount)=>{
+  const subject='transaction Failed !!!'
+const text=`Hey ${name} \n\n a transaction of this amount ${amount},to this account ${toAccount} has been failed`
+const html=`<p>Hello ${name}</p><p>Thank you for doing a transaction at backend ledger</p>`
 
 await sendEmail(userEmail,subject,text,html)
 
 }
 
-module.exports = {sendRegistrationEmail,sendTranscationEmail,sendTranscationFaliureEmail};
+module.exports = {sendRegistrationEmail,sendTransactionEmail,sendTransactionFaliureEmail};
 
