@@ -93,7 +93,7 @@ if(istransactionAlreadyExists){
   }
 
   // create transaction(PENDING)
-
+try{
   const session = await mongoose.startSession();
 
   session.startTransaction();
@@ -146,7 +146,13 @@ transaction.status="COMPLETED"
 
   await session.commitTransaction();
   session.endSession();
-
+}catch(err){
+  console.log(err)
+  return res.status(400).json({
+    message:"trenscation failed"
+    
+  })
+}
   if (transaction.status !== "COMPLETED") {
     await emailService.sendTransactionFaliureEmail(
       req.user.email,
@@ -198,6 +204,7 @@ async function createInitialFundstransaction(req, res) {
     });
   }
 
+  try{
   const session = await mongoose.startSession();
   session.startTransaction();
 
@@ -243,11 +250,16 @@ async function createInitialFundstransaction(req, res) {
     { status: "COMPLETED" },
     { session },
   );
-
+transaction.status="COMPLETED"
   await transaction.save({ session });
   await session.commitTransaction();
 
   session.endSession();
+}catch(err){
+  return res.status(400).json({
+    message:"initial fund transaction failed"
+  })
+}
 
   res.status(201).json({
     message: "initial fund transaction completed successfully",
